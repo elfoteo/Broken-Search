@@ -1,14 +1,19 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerProjectile : MonoBehaviour
 {
-    [SerializeField] float speed = 50.0f;
+    [SerializeField] float speed = 78;
     [SerializeField] private Camera mainCamera;
     [SerializeField] public Rigidbody2D rb;
     [SerializeField] private float damage;
-
+    
+    public Animator animator;
+    
     public void SetMainCamera(Camera mainCamera)
     {
+        rb.gravityScale = 0;
+
         this.mainCamera = mainCamera;
         // Get the mouse position
         Vector3 mousePosition = Input.mousePosition;
@@ -41,7 +46,12 @@ public class PlayerProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Destroy(gameObject);
+        rb.velocity=Vector3.zero;
+        
+
+        animator.SetBool("Hit", true);
+
+            
         // TODO: Spawn Effects
         // TODO: Damage enemies
         EnemyShooter enemy = other.gameObject.GetComponent<EnemyShooter>();
@@ -49,5 +59,14 @@ public class PlayerProjectile : MonoBehaviour
         {
             enemy.Damage(this.damage);
         }
+
+        StartCoroutine(DestroyAfterDelay());
     }
-}
+
+    private IEnumerator DestroyAfterDelay()
+    {
+        Debug.Log("adesso mi distruggo");
+        yield return new WaitForSeconds(1.0f);
+        Destroy(gameObject);
+    }
+}   

@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 2625345236457867841}
   - component: {fileID: 1917234934623335708}
   - component: {fileID: 94149662823430452}
-  - component: {fileID: 6418423617312118253}
-  - component: {fileID: 5119495804981869282}
+  - component: {fileID: -8992340202148131634}
+  - component: {fileID: -8237069488756323982}
   m_Layer: 0
-  m_Name: PlayerProjectile
+  m_Name: mosquitoammo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.6417, y: -0.0041, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d116123306c353b44b18f26f55468bb6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4e3fa8f4cea19474fae067ca5571fa82, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -130,7 +130,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -150,7 +150,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.14171402}
   serializedVersion: 2
   m_Radius: 0.43038076
---- !u!114 &6418423617312118253
+--- !u!114 &-8992340202148131634
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -159,15 +159,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6096232906326038199}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 903df5dcc8e5d6f41a195447ba4df290, type: 3}
+  m_Script: {fileID: 11500000, guid: a1fcb7ce81ac1f54d83edd761a2a2b50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
-  mainCamera: {fileID: 0}
+  speed: 7
   rb: {fileID: 1917234934623335708}
   damage: 15
-  animator: {fileID: 5119495804981869282}
---- !u!95 &5119495804981869282
+  animator: {fileID: -8237069488756323982}
+--- !u!95 &-8237069488756323982
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -177,7 +176,7 @@ Animator:
   m_GameObject: {fileID: 6096232906326038199}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fadd52aea74bbd74dbdb8a50ec01e103, type: 2}
+  m_Controller: {fileID: 9100000, guid: 97024d8dd1831fc44b2a861a6de92f2a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
