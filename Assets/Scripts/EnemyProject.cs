@@ -20,6 +20,7 @@ public class EnemyProjectile : MonoBehaviour
 
         // Apply the velocity to the Rigidbody2D
         rb.velocity = direction * speed;
+       
     }
 
     // Start is called before the first frame update

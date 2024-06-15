@@ -16,6 +16,8 @@ public class SmoothCameraFollow : MonoBehaviour
 
         targetPosition.z = transform.position.z;
 
-        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, damping);
+        
+        Vector3 clamped = new Vector3(transform.position.x, Mathf.Min(Mathf.Max(transform.position.y, -1f), 1f), transform.position.z);
+        transform.position = Vector3.SmoothDamp(clamped, targetPosition, ref velocity, damping);
     }
 }
