@@ -23,6 +23,7 @@ public class Teleporter : MonoBehaviour
     // Detect collision with player
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("collisione!!!!!!!");
         if (other.gameObject == player)
         {
             // Transition to the specified scene
