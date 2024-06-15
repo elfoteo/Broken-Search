@@ -35,4 +35,9 @@ public class Player : MonoBehaviour
             xpForNextLevel = GetXpForLevel(currentLevel);
         }
     }
+
+    public void Damage(float amount)
+    {
+        this.health -= amount;
+    }
 }
