@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerProjectile : MonoBehaviour
@@ -41,10 +39,8 @@ public class PlayerProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
-            Destroy(gameObject);
-            // TODO: Spawn Effects
-            // TODO: Damage enemies
-        
+        Destroy(gameObject);
+        // TODO: Spawn Effects
+        // TODO: Damage enemies
     }
 }
