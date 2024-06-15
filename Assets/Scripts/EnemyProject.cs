@@ -3,16 +3,13 @@ using UnityEngine;
 public class EnemyProjectile : MonoBehaviour
 {
     [SerializeField] float speed = 50.0f;
-    private Camera mainCamera;
     public Rigidbody2D rb;
     public float damage;
 
-    public void PositionAndRotate(Camera mainCamera, Vector3 target)
+    public void PositionAndRotate(Vector3 target)
     {
-        this.mainCamera = mainCamera;
-
         // Convert to world coordinates
-        Vector3 targetPositionWorld = mainCamera.ScreenToWorldPoint(target);
+        Vector3 targetPositionWorld = target;
 
         // Calculate the direction vector
         Vector3 direction = targetPositionWorld - transform.position;

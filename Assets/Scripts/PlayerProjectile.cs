@@ -9,11 +9,6 @@ public class PlayerProjectile : MonoBehaviour
     public void SetMainCamera(Camera mainCamera)
     {
         this.mainCamera = mainCamera;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
         // Get the mouse position
         Vector3 mousePosition = Input.mousePosition;
 
@@ -29,6 +24,12 @@ public class PlayerProjectile : MonoBehaviour
 
         // Apply the velocity to the Rigidbody2D
         rb.velocity = direction * speed;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
     }
 
     // Update is called once per frame
