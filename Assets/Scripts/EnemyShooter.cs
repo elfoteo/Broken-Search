@@ -10,7 +10,6 @@ public class EnemyShooter : MonoBehaviour
     [SerializeField] private float shootCooldown = 3000f; // Cooldown in milliseconds
     [SerializeField] private float shootingRange = 10.0f; // Range within which the enemy will shoot
     [SerializeField] private GameObject bulletPrefab; // Bullet prefab
-    [SerializeField] private Camera mainCamera; // Main camera reference
 
     private Vector3 originalPosition;
     private float lastShootTime = 0f; // Last time the enemy shot

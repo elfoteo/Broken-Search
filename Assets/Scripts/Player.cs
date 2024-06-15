@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     private int xpForNextLevel = 0;
     private int currentXp = 0;
     private int currentLevel = 0;
+    public float interactDistanceThreshold = 3.0f;
+    public GameObject NPC;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +35,37 @@ public class Player : MonoBehaviour
             currentXp -= xpForNextLevel;
             currentLevel++;
             xpForNextLevel = GetXpForLevel(currentLevel);
+        }
+        // Calculate the distance between the player and the NPC
+        if (NPC != null)
+        {
+            float distance = Vector3.Distance(NPC.transform.position, transform.position);
+            DialogueTrigger trigger = NPC.GetComponent<DialogueTrigger>();
+            if (distance < interactDistanceThreshold)
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    if (trigger != null)
+                    {
+                        if (!trigger.isDialogStarted())
+                        {
+                            trigger.TriggerDialogue();
+                        }
+                        else
+                        {
+                            trigger.NextDialogue();
+                        }
+                    }
+                }
+            }
+            else
+            {
+                trigger.EndDialog();
+            }
+        }
+        else
+        {
+            Debug.LogError("Add it to the inpsector of the Player");
         }
     }
 
