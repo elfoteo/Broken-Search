@@ -3,9 +3,10 @@ using UnityEngine;
 public class PlayerProjectile : MonoBehaviour
 {
     [SerializeField] float speed = 50.0f;
-    private Camera mainCamera;
-    public Rigidbody2D rb;
-    
+    [SerializeField] private Camera mainCamera;
+    [SerializeField] public Rigidbody2D rb;
+    [SerializeField] private float damage;
+
     public void SetMainCamera(Camera mainCamera)
     {
         this.mainCamera = mainCamera;
@@ -43,5 +44,10 @@ public class PlayerProjectile : MonoBehaviour
         Destroy(gameObject);
         // TODO: Spawn Effects
         // TODO: Damage enemies
+        EnemyShooter enemy = other.gameObject.GetComponent<EnemyShooter>();
+        if (enemy != null)
+        {
+            enemy.Damage(this.damage);
+        }
     }
 }

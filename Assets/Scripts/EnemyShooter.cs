@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,9 @@ public class EnemyShooter : MonoBehaviour
     [SerializeField] private float shootCooldown = 3000f; // Cooldown in milliseconds
     [SerializeField] private float shootingRange = 10.0f; // Range within which the enemy will shoot
     [SerializeField] private GameObject bulletPrefab; // Bullet prefab
+    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private GameObject bar;
+    private float health;
 
     private Vector3 originalPosition;
     private float lastShootTime = 0f; // Last time the enemy shot
@@ -19,6 +23,7 @@ public class EnemyShooter : MonoBehaviour
     {
         // Store the original position of the enemy
         originalPosition = transform.position;
+        health = maxHealth;
     }
 
     // Update is called once per frame
@@ -26,7 +31,8 @@ public class EnemyShooter : MonoBehaviour
     {
         // Calculate the new Y position using a sine wave
         float newY = originalPosition.y + Mathf.Sin(Time.time * hoverSpeed) * hoverHeightAnim;
-
+        // Update bar
+        bar.transform.localScale = new Vector3(health / maxHealth, bar.transform.localScale.y, bar.transform.localScale.z);
         // Update the position of the enemy
         transform.position = new Vector3(originalPosition.x, newY, originalPosition.z);
 
@@ -60,6 +66,24 @@ public class EnemyShooter : MonoBehaviour
         else
         {
             Debug.LogError("Projectile does not have an EnemyProjectile component!");
+        }
+    }
+
+    private void Die()
+    {
+        // TODO: Spawn particles
+        // TODO: Drop enemy juice
+        // After particles are spawned
+        Destroy(gameObject);
+        gameObject.transform.position = new Vector3(0, -1000, 0);
+    }
+
+    internal void Damage(float amount)
+    {
+        health -= amount;
+        if (health < 0)
+        {
+            Die();
         }
     }
 }
