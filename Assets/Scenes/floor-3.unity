@@ -842,6 +842,7 @@ MonoBehaviour:
   isDead: 0
   uiUpgrade: {fileID: 1585748548}
   playerData: {fileID: 11400000, guid: a27fc64ed4142a840a770283215f77de, type: 2}
+  damageAudioSource: {fileID: 0}
 --- !u!114 &425736579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1889,9 +1890,9 @@ RectTransform:
   m_Children:
   - {fileID: 30657907}
   - {fileID: 1937626737}
-  - {fileID: 120932072}
   - {fileID: 764567653}
   - {fileID: 1585748547}
+  - {fileID: 120932072}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

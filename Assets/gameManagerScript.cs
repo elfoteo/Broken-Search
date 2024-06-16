@@ -28,6 +28,7 @@ public class gameManagerScript : MonoBehaviour
 
     public void restart() 
     {
+        Debug.Log("restart");
         SceneManager.LoadScene("floor-0");
         player.GetComponent<Player>().isDead = false;
 
