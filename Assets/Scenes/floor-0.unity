@@ -681,6 +681,7 @@ MonoBehaviour:
   m_GroundCheck: {fileID: 27859370}
   m_CeilingCheck: {fileID: 519008749}
   m_CrouchDisableCollider: {fileID: 0}
+  m_FacingRight: 1
   OnLandEvent:
     m_PersistentCalls:
       m_Calls:
@@ -741,6 +742,7 @@ MonoBehaviour:
   animator: {fileID: 425736580}
   controller: {fileID: 425736574}
   runSpeed: 60
+  player: {fileID: 425736578}
 --- !u!114 &425736578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -759,6 +761,9 @@ MonoBehaviour:
   healthbar: {fileID: 0}
   juiceBar: {fileID: 0}
   gameManager: {fileID: 0}
+  isDead: 0
+  uiUpgrade: {fileID: 0}
+  playerData: {fileID: 11400000, guid: a27fc64ed4142a840a770283215f77de, type: 2}
 --- !u!114 &425736579
 MonoBehaviour:
   m_ObjectHideFlags: 0

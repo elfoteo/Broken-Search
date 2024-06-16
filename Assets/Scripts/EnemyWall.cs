@@ -13,6 +13,7 @@ public class EnemyWall : MonoBehaviour, IDamageable
     [SerializeField] private int maxHealth = 300;
     [SerializeField] private GameObject bar;
     [SerializeField] private GameObject deathParticles;
+    [SerializeField] private GameObject enemyJuicePrefab; // Prefab for EnemyJuice
     private float health;
     private int? shootCooldown;
     private static System.Random random = new System.Random();
@@ -115,8 +116,40 @@ public class EnemyWall : MonoBehaviour, IDamageable
     {
         GameObject particles = Instantiate(deathParticles);
         particles.GetComponent<ParticleSystem>()?.Play();
-        // TODO: Drop enemy juice
-        // After particles are spawned
+        // Spawn 9 EnemyJuice instances with random velocity
+        for (int i = 0; i < 9; i++)
+        {
+            if (enemyJuicePrefab != null)
+            {
+                GameObject juice = Instantiate(enemyJuicePrefab, transform.position, Quaternion.identity);
+
+                // Get EnemyJuice component
+                EnemyJuice juiceScript = juice.GetComponent<EnemyJuice>();
+                if (juiceScript != null)
+                {
+                    // Set player reference
+                    juiceScript.SetPlayer(player);
+
+                    // Add slight random velocity
+                    Rigidbody2D rb = juice.GetComponent<Rigidbody2D>();
+                    if (rb != null)
+                    {
+                        float randomAngle = UnityEngine.Random.Range(0f, Mathf.PI * 2f); // Random angle in radians
+                        float randomSpeed = UnityEngine.Random.Range(3f, 6f); // Random speed
+                        Vector2 randomVelocity = new Vector2(Mathf.Cos(randomAngle), Mathf.Sin(randomAngle)) * randomSpeed;
+                        rb.velocity = randomVelocity;
+                    }
+                    else
+                    {
+                        Debug.LogError("Juice prefab does not have a Rigidbody2D component!");
+                    }
+                }
+                else
+                {
+                    Debug.LogError("Juice prefab does not have an EnemyJuice component!");
+                }
+            }
+        }
         Destroy(gameObject);
         gameObject.transform.position = new Vector3(0, -1000, 0);
     }

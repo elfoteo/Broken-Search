@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,13 +17,16 @@ public class Player : MonoBehaviour
     public Image juiceBar;
     public gameManagerScript gameManager;
     public bool isDead;
-    private float enemyPoisoningTime = 0.0F;
     public GameObject uiUpgrade;
+    public PlayerDataSO playerData; // Reference to PlayerDataSO
 
     // Start is called before the first frame update
     void Start()
     {
         xpForNextLevel = GetXpForLevel(currentLevel);
+
+        // Subscribe to the OnHealthChanged event from PlayerDataSO
+        playerData.OnHealthChanged.AddListener(UpdateHealthUI);
     }
 
     private int GetXpForLevel(int currentLevel)
@@ -43,10 +45,8 @@ public class Player : MonoBehaviour
             return;
         }
 
-
         healthbar.fillAmount = Mathf.Clamp(health / maxHealth, 0, 1);
-        
-        
+
         if (currentXp >= xpForNextLevel)
         {
             uiUpgrade.SetActive(true);
@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
             xpForNextLevel = GetXpForLevel(currentLevel);
         }
 
-        juiceBar.fillAmount = Mathf.Clamp((float)currentXp / xpForNextLevel,0,1);
+        juiceBar.fillAmount = Mathf.Clamp((float)currentXp / xpForNextLevel, 0, 1);
         if (juiceBar == null)
         {
             return;
@@ -66,8 +66,8 @@ public class Player : MonoBehaviour
             currentXp++;
         }
 
-            // Calculate the distance between the player and the NPC
-            if (NPC != null)
+        // Calculate the distance between the player and the NPC
+        if (NPC != null)
         {
             float distance = Vector3.Distance(NPC.transform.position, transform.position);
             DialogueTrigger trigger = NPC.GetComponent<DialogueTrigger>();
@@ -95,20 +95,23 @@ public class Player : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Add it to the inpsector of the Player");
+            Debug.LogError("Add it to the inspector of the Player");
         }
     }
 
     public void Damage(float amount)
     {
-        this.health -= amount;
-        if (health <= 0 && !isDead) 
+        health -= amount;
+        health = Mathf.Clamp(health, 0, maxHealth);
+
+        // Update PlayerDataSO with current health value
+        playerData.PlayerHealth = health;
+
+        if (health <= 0 && !isDead)
         {
             isDead = true;
             gameManager.gameOver();
-
         }
-
     }
 
     internal void Pickup(string name)
@@ -121,11 +124,6 @@ public class Player : MonoBehaviour
         currentXp += v;
     }
 
-    internal void AddEnemyPoisoning(float v)
-    {
-        this.enemyPoisoningTime += v;
-    }
-
     internal void IncreaseHitSpeed(int v)
     {
         this.gameObject.GetComponent<Weapon>().ReduceCooldown(v);
@@ -134,5 +132,19 @@ public class Player : MonoBehaviour
     internal void IncreaseDamageDelt(float v)
     {
         this.gameObject.GetComponent<Weapon>().AddBonusDamage(v);
+    }
+
+    private void UpdateHealthUI()
+    {
+        if (healthbar != null)
+        {
+            healthbar.fillAmount = Mathf.Clamp(health / maxHealth, 0, 1);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        // Clean up event listener to prevent memory leaks
+        playerData.OnHealthChanged.RemoveListener(UpdateHealthUI);
     }
 }

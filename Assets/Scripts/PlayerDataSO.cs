@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "Health")]
-public class HealthSO : ScriptableObject
+public class PlayerDataSO: ScriptableObject
 {
     [SerializeField]private float health;
     public float PlayerHealth { get => health; set{ OnHealthChanged.Invoke();

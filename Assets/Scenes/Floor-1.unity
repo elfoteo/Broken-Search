@@ -1235,6 +1235,7 @@ MonoBehaviour:
   m_GroundCheck: {fileID: 27859370}
   m_CeilingCheck: {fileID: 519008749}
   m_CrouchDisableCollider: {fileID: 0}
+  m_FacingRight: 1
   OnLandEvent:
     m_PersistentCalls:
       m_Calls:
@@ -1316,6 +1317,7 @@ MonoBehaviour:
   gameManager: {fileID: 231003123}
   isDead: 0
   uiUpgrade: {fileID: 1979014339}
+  playerData: {fileID: 11400000, guid: a27fc64ed4142a840a770283215f77de, type: 2}
 --- !u!114 &425736579
 MonoBehaviour:
   m_ObjectHideFlags: 0
