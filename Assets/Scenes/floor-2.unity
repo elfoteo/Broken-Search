@@ -5013,6 +5013,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 425736571}
+    - target: {fileID: 968897510950460037, guid: b3cdf5102da509e408edd4a57dbd8e8f, type: 3}
+      propertyPath: maxHealth
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 6361056308457733730, guid: b3cdf5102da509e408edd4a57dbd8e8f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 47.72
