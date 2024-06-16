@@ -61,6 +61,7 @@ public class PlayerProjectile : MonoBehaviour
             var component = other.gameObject.GetComponent(type) as IDamageable;
             if (component != null)
             {
+                Debug.Log(component);
                 component.Damage(this.damage);
             }
         }
@@ -70,7 +71,6 @@ public class PlayerProjectile : MonoBehaviour
 
     private IEnumerator DestroyAfterDelay()
     {
-        Debug.Log("adesso mi distruggo");
         yield return new WaitForSeconds(1.0f);
         Destroy(gameObject);
     }
