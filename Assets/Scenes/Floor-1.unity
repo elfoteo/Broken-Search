@@ -761,6 +761,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 6096232906326038199, guid: 40de1f092795ad6408ee44b68aa05295, type: 3}
   maxHealth: 100
   bar: {fileID: 1072548012}
+  enemyJuicePrefab: {fileID: 6096232906326038199, guid: 994d0a3d75ddc754ab2ba04880439b86, type: 3}
 --- !u!1 &231003122
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,6 +792,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameOverUi: {fileID: 131391898}
+  rb: {fileID: 0}
 --- !u!4 &231003124
 Transform:
   m_ObjectHideFlags: 0
@@ -2677,6 +2679,10 @@ PrefabInstance:
       propertyPath: shootingRange
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 1008624956546332113, guid: 4ac0f6fda4042a24ab4f582cbd868654, type: 3}
+      propertyPath: enemyJuicePrefab
+      value: 
+      objectReference: {fileID: 6096232906326038199, guid: 994d0a3d75ddc754ab2ba04880439b86, type: 3}
     - target: {fileID: 2078492347327908977, guid: 4ac0f6fda4042a24ab4f582cbd868654, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -4680,6 +4686,10 @@ PrefabInstance:
       propertyPath: shootingRange
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 1008624956546332113, guid: 4ac0f6fda4042a24ab4f582cbd868654, type: 3}
+      propertyPath: enemyJuicePrefab
+      value: 
+      objectReference: {fileID: 6096232906326038199, guid: 994d0a3d75ddc754ab2ba04880439b86, type: 3}
     - target: {fileID: 2078492347327908977, guid: 4ac0f6fda4042a24ab4f582cbd868654, type: 3}
       propertyPath: m_Enabled
       value: 1

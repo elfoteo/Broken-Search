@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,8 +12,9 @@ public class EnemyShooter : MonoBehaviour, IDamageable
     [SerializeField] private GameObject bulletPrefab; // Bullet prefab
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private GameObject bar;
-    private float health;
+    [SerializeField] private GameObject enemyJuicePrefab; // Prefab for EnemyJuice
 
+    private float health;
     private Vector3 originalPosition;
     private float lastShootTime = 0f; // Last time the enemy shot
 
@@ -59,7 +59,6 @@ public class EnemyShooter : MonoBehaviour, IDamageable
         GameObject projectile = Instantiate(bulletPrefab, transform.position, transform.rotation);
         EnemyProjectile enemyProjectile = projectile.GetComponent<EnemyProjectile>();
 
-
         if (enemyProjectile != null)
         {
             // Set the projectile's target and other properties
@@ -73,17 +72,52 @@ public class EnemyShooter : MonoBehaviour, IDamageable
 
     private void Die()
     {
-        // TODO: Spawn particles
-        // TODO: Drop enemy juice
-        // After particles are spawned
+        // Spawn particles (not shown in this snippet)
+
+        // Spawn 3 EnemyJuice instances with random velocity
+        for (int i = 0; i < 3; i++)
+        {
+            if (enemyJuicePrefab != null)
+            {
+                GameObject juice = Instantiate(enemyJuicePrefab, transform.position, Quaternion.identity);
+
+                // Get EnemyJuice component
+                EnemyJuice juiceScript = juice.GetComponent<EnemyJuice>();
+                if (juiceScript != null)
+                {
+                    // Set player reference
+                    juiceScript.SetPlayer(player);
+
+                    // Add slight random velocity
+                    Rigidbody2D rb = juice.GetComponent<Rigidbody2D>();
+                    if (rb != null)
+                    {
+                        float randomAngle = Random.Range(0f, Mathf.PI * 2f); // Random angle in radians
+                        float randomSpeed = Random.Range(3f, 6f); // Random speed
+                        Vector2 randomVelocity = new Vector2(Mathf.Cos(randomAngle), Mathf.Sin(randomAngle)) * randomSpeed;
+                        rb.velocity = randomVelocity;
+                    }
+                    else
+                    {
+                        Debug.LogError("Juice prefab does not have a Rigidbody2D component!");
+                    }
+                }
+                else
+                {
+                    Debug.LogError("Juice prefab does not have an EnemyJuice component!");
+                }
+            }
+        }
+
+        // Destroy the enemy object
         Destroy(gameObject);
-        gameObject.transform.position = new Vector3(0, -1000, 0);
     }
+
 
     public void Damage(float amount)
     {
         health -= amount;
-        if (health < 0)
+        if (health <= 0)
         {
             Die();
         }

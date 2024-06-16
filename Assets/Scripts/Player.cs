@@ -99,4 +99,9 @@ public class Player : MonoBehaviour
     {
         Debug.LogWarning("Picked up " + name);
     }
+
+    internal void AddJuice(int v)
+    {
+        currentXp += v;
+    }
 }
