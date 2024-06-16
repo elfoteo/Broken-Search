@@ -10,6 +10,7 @@ public class EnemyWall : MonoBehaviour, IDamageable
     [SerializeField] private int shootCooldownMin = 2000; // Cooldown in milliseconds
     [SerializeField] private float shootingRange = 11.0f; // Range within which the enemy will shoot
     [SerializeField] private GameObject bulletPrefab; // Bullet prefab
+    [SerializeField] private GameObject bulletPrefab2; // Bullet prefab
     [SerializeField] private int maxHealth = 300;
     [SerializeField] private GameObject bar;
     [SerializeField] private GameObject deathParticles;
@@ -70,7 +71,7 @@ public class EnemyWall : MonoBehaviour, IDamageable
         {
             case Attacks.NORMAL_SHOT:
                 // Create a bullet that goes towards the player
-                InstantiateBulletAndRotate(transform.position, player.transform.position);
+                InstantiateBulletAndRotate(transform.position, player.transform.position, bulletPrefab2);
                 break;
             case Attacks.SPIKES_TOP:
                 for (int i = 0; i < 5; i++)
@@ -79,7 +80,7 @@ public class EnemyWall : MonoBehaviour, IDamageable
                     float y = i * 0.5f;
                     Vector3 startPos = new Vector3(x, y, transform.position.z);
                     Vector3 target = new Vector3(x, y-5, transform.position.z);
-                    InstantiateBulletAndRotate(startPos, target);
+                    InstantiateBulletAndRotate(startPos, target, bulletPrefab);
                 }
                 break;
             case Attacks.SPIKES_BOTTOM:
@@ -89,17 +90,21 @@ public class EnemyWall : MonoBehaviour, IDamageable
                     float y = i * 0.5f + 1 + transform.position.y;
                     Vector3 startPos = new Vector3(x, y, transform.position.z);
                     Vector3 target = new Vector3(x, y - 5, transform.position.z);
-                    InstantiateBulletAndRotate(startPos, target);
+                    InstantiateBulletAndRotate(startPos, target, bulletPrefab);
                 }
+                InstantiateBulletAndRotate(transform.position, player.transform.position, bulletPrefab2);
+                InstantiateBulletAndRotate(transform.position, player.transform.position, bulletPrefab2);
+                InstantiateBulletAndRotate(transform.position, player.transform.position, bulletPrefab2);
+                InstantiateBulletAndRotate(transform.position, player.transform.position, bulletPrefab2);
                 break;
         }
         
     }
 
-    private void InstantiateBulletAndRotate(Vector3 startPos, Vector3 target)
+    private void InstantiateBulletAndRotate(Vector3 startPos, Vector3 target, GameObject bullet)
     {
         // Instantiate the bullet prefab
-        GameObject projectile = Instantiate(bulletPrefab, startPos, transform.rotation);
+        GameObject projectile = Instantiate(bullet, startPos, transform.rotation);
         EnemyProjectile enemyProjectile = projectile.GetComponent<EnemyProjectile>();
         if (enemyProjectile != null)
         {

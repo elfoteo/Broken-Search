@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     public bool isDead;
     public GameObject uiUpgrade;
     public PlayerDataSO playerData; // Reference to PlayerDataSO
+    public AudioSource damageAudioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -61,11 +62,6 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            currentXp++;
-        }
-
         // Calculate the distance between the player and the NPC
         if (NPC != null)
         {
@@ -103,10 +99,21 @@ public class Player : MonoBehaviour
     {
         health -= amount;
         health = Mathf.Clamp(health, 0, maxHealth);
+        if (amount > 0 && damageAudioSource != null)
+        {
+            damageAudioSource.Play();
+        }
+        else
+        {
+            if (damageAudioSource == null)
+            {
+                Debug.LogError("Damage audio source is not assigned!");
+            }
+        }
 
         // Update PlayerDataSO with current health value
         playerData.PlayerHealth = health;
-
+        
         if (health <= 0 && !isDead)
         {
             isDead = true;
