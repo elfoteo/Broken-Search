@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -41,25 +42,27 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (healthbar == null)
+        if (healthbar != null)
         {
-            return;
+            healthbar.fillAmount = Mathf.Clamp(health / maxHealth, 0, 1);
         }
 
-        healthbar.fillAmount = Mathf.Clamp(health / maxHealth, 0, 1);
-
+       
         if (currentXp >= xpForNextLevel)
         {
-            uiUpgrade.SetActive(true);
+            if (uiUpgrade != null)
+            {
+                uiUpgrade.SetActive(true);
+            }
+
             currentXp -= xpForNextLevel;
             currentLevel++;
             xpForNextLevel = GetXpForLevel(currentLevel);
         }
 
-        juiceBar.fillAmount = Mathf.Clamp((float)currentXp / xpForNextLevel, 0, 1);
-        if (juiceBar == null)
+        if (juiceBar != null)
         {
-            return;
+            juiceBar.fillAmount = Mathf.Clamp((float)currentXp / xpForNextLevel, 0, 1);
         }
 
         // Calculate the distance between the player and the NPC
@@ -117,7 +120,11 @@ public class Player : MonoBehaviour
         if (health <= 0 && !isDead)
         {
             isDead = true;
-            gameManager.gameOver();
+            if (gameManager != null)
+            {
+                gameManager.gameOver();
+            }
+            
         }
     }
 
