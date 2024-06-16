@@ -10,6 +10,7 @@ public class PlayerMovment : MonoBehaviour
     public float runSpeed = 40.0f;
     float horizontalMove = 0.0f;
     bool jump = false;
+    public Player player;
 
     void Update()
     {
@@ -30,8 +31,13 @@ public class PlayerMovment : MonoBehaviour
     }
 
 
-    private void FixedUpdate()
+    private void FixedUpdate()  
     {
+        if (player.isDead)
+        {
+            return; // Blocca il movimento del giocatore se è morto
+        }
+
         controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
         jump = false;
     }

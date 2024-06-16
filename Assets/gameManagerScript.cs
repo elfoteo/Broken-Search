@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class gameManagerScript : MonoBehaviour
 {
     public GameObject GameOverUi;
+    public Player player;
     [SerializeField] public Rigidbody2D rb;
 
 
@@ -30,6 +31,8 @@ public class gameManagerScript : MonoBehaviour
     public void restart() 
     {
         SceneManager.LoadScene("floor-0");
+        player.isDead = false;
+        
     }
     public void mainMenu()
     {
