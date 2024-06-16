@@ -10,6 +10,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] public GameObject bulletPrefab;
     [SerializeField] public int shootCooldown = 750;
     [SerializeField] public Camera mainCamera;
+    private float bonusDamage = 0;
     public float lastShootTime = 0;
 
     // Start is called before the first frame update
@@ -35,10 +36,21 @@ public class Weapon : MonoBehaviour
         if (playerProjectile != null)
         {
             playerProjectile.SetMainCamera(mainCamera);
+            playerProjectile.damage += bonusDamage;
         }
         else
         {
             Debug.LogError("Projectile does not have a PlayerProjectile component.");
         }
+    }
+
+    internal void ReduceCooldown(int v)
+    {
+        this.shootCooldown -= v;
+    }
+
+    internal void AddBonusDamage(float v)
+    {
+        bonusDamage += v;
     }
 }

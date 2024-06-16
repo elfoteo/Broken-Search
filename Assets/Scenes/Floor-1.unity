@@ -792,7 +792,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameOverUi: {fileID: 131391898}
-  rb: {fileID: 0}
+  rb: {fileID: 425736576}
 --- !u!4 &231003124
 Transform:
   m_ObjectHideFlags: 0
@@ -1311,7 +1311,7 @@ MonoBehaviour:
   interactDistanceThreshold: 3
   NPC: {fileID: 973375419}
   healthbar: {fileID: 1180446203}
-  juiceBar: {fileID: 0}
+  juiceBar: {fileID: 1742121856}
   gameManager: {fileID: 231003123}
 --- !u!114 &425736579
 MonoBehaviour:
