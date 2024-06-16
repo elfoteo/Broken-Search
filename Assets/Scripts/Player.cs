@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -12,6 +14,9 @@ public class Player : MonoBehaviour
     private int currentLevel = 0;
     public float interactDistanceThreshold = 3.0f;
     public GameObject NPC;
+    public Image healthbar;
+    public gameManagerScript gameManager;
+    private bool isDead;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +35,15 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (healthbar == null)
+        {
+            return;
+        }
+
+
+        healthbar.fillAmount = Mathf.Clamp(health / maxHealth, 0, 1);
+        
+        
         if (currentXp >= xpForNextLevel)
         {
             currentXp -= xpForNextLevel;
@@ -72,6 +86,13 @@ public class Player : MonoBehaviour
     public void Damage(float amount)
     {
         this.health -= amount;
+        if (health <= 0 && !isDead) 
+        {
+            isDead = true;
+            gameManager.gameOver();
+
+        }
+
     }
 
     internal void Pickup(string name)
