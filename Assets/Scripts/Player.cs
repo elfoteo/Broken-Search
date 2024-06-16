@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] public float maxHealth = 100;
-    private float health = 100;
+    [SerializeField] public float maxHealth = 700;
+    private float health = 700;
     private int xpForNextLevel = 0;
     private int currentXp = 0;
     private int currentLevel = 0;

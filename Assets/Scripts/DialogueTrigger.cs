@@ -44,7 +44,7 @@ public class DialogueTrigger : MonoBehaviour {
             dialogueClosed = true;
             dialogStarted = false;
             FindObjectOfType<DialogueManager>().EndDialogue();
-            audioSource.Stop();
+            audioSource.Stop();     
         }
     }
 }

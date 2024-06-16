@@ -163,7 +163,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
-  mainCamera: {fileID: 0}
   rb: {fileID: 1917234934623335708}
   damage: 15
   animator: {fileID: 5119495804981869282}
