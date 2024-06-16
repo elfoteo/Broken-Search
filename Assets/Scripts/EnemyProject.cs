@@ -5,7 +5,6 @@ public class EnemyProjectile : MonoBehaviour
     [SerializeField] float speed = 50.0f;
     public Rigidbody2D rb;
     public float damage;
-    public Animator animator;
 
     public void PositionAndRotate(Vector3 target)
     {

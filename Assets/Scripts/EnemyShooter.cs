@@ -58,6 +58,8 @@ public class EnemyShooter : MonoBehaviour, IDamageable
         // Instantiate the bullet prefab
         GameObject projectile = Instantiate(bulletPrefab, transform.position, transform.rotation);
         EnemyProjectile enemyProjectile = projectile.GetComponent<EnemyProjectile>();
+
+
         if (enemyProjectile != null)
         {
             // Set the projectile's target and other properties

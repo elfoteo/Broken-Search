@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3349191972173142705}
   - component: {fileID: 6589378933919876584}
-  - component: {fileID: 1008624956546332113}
   - component: {fileID: 2078492347327908977}
   m_Layer: 0
   m_Name: mosquito
@@ -86,25 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1008624956546332113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 119464243293630572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 515de467f0b92884590e6b4685501b4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hoverHeightAnim: 0.75
-  hoverSpeed: 1
-  player: {fileID: 0}
-  shootCooldown: 3000
-  shootingRange: 10
-  bulletPrefab: {fileID: 6096232906326038199, guid: fcd119527897dfe4086e8f59583c7d78, type: 3}
-  mainCamera: {fileID: 0}
 --- !u!58 &2078492347327908977
 CircleCollider2D:
   m_ObjectHideFlags: 0
