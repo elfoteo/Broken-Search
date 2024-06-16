@@ -84,7 +84,7 @@ public class EnemyWall : MonoBehaviour, IDamageable
             case Attacks.SPIKES_BOTTOM:
                 for (int i = 0; i < 15; i++)
                 {
-                    float x = i * 2 + 1 + transform.position.x;
+                    float x = (-i * 2 - 1 + transform.position.x);
                     float y = i * 0.5f + 1 + transform.position.y;
                     Vector3 startPos = new Vector3(x, y, transform.position.z);
                     Vector3 target = new Vector3(x, y - 5, transform.position.z);
