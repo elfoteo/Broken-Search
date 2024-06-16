@@ -73,4 +73,9 @@ public class Player : MonoBehaviour
     {
         this.health -= amount;
     }
+
+    internal void Pickup(string name)
+    {
+        Debug.LogWarning("Picked up " + name);
+    }
 }

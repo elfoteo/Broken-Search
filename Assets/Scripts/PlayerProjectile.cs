@@ -54,10 +54,15 @@ public class PlayerProjectile : MonoBehaviour
             
         // TODO: Spawn Effects
         // TODO: Damage enemies
-        EnemyShooter enemy = other.gameObject.GetComponent<EnemyShooter>();
-        if (enemy != null)
+        System.Type[] damageableTypes = { typeof(EnemyShooter), typeof(EnemyWall) };
+
+        foreach (var type in damageableTypes)
         {
-            enemy.Damage(this.damage);
+            var component = other.gameObject.GetComponent(type) as IDamageable;
+            if (component != null)
+            {
+                component.Damage(this.damage);
+            }
         }
 
         StartCoroutine(DestroyAfterDelay());

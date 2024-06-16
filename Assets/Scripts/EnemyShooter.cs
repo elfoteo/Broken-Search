@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyShooter : MonoBehaviour
+public class EnemyShooter : MonoBehaviour, IDamageable
 {
     [SerializeField] public float hoverHeightAnim = 0.75f; // Amplitude of the hover motion
     [SerializeField] public float hoverSpeed = 1.0f; // Speed of the hover motion
@@ -78,7 +78,7 @@ public class EnemyShooter : MonoBehaviour
         gameObject.transform.position = new Vector3(0, -1000, 0);
     }
 
-    internal void Damage(float amount)
+    public void Damage(float amount)
     {
         health -= amount;
         if (health < 0)
