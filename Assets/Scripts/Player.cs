@@ -17,8 +17,7 @@ public class Player : MonoBehaviour
     public Image healthbar;
     public Image juiceBar;
     public gameManagerScript gameManager;
-    private bool isDead;
-    private float enemyPoisoningTime = 0.0F;
+    public bool isDead;
 
     // Start is called before the first frame update
     void Start()
@@ -112,11 +111,6 @@ public class Player : MonoBehaviour
     internal void AddJuice(int v)
     {
         currentXp += v;
-    }
-
-    internal void AddEnemyPoisoning(float v)
-    {
-        this.enemyPoisoningTime += v;
     }
 
     internal void IncreaseHitSpeed(int v)

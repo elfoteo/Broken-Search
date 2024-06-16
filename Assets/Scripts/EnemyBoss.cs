@@ -10,6 +10,7 @@ public class EnemyBoss : MonoBehaviour, IDamageable
     [SerializeField] private int shootCooldownMin = 2000; // Cooldown in milliseconds
     [SerializeField] private float shootingRange = 11.0f; // Range within which the enemy will shoot
     [SerializeField] private GameObject bulletPrefab; // Bullet prefab
+    [SerializeField] private GameObject burstProjectile; // Bullet prefab
     [SerializeField] private int maxHealth = 300;
     [SerializeField] private GameObject bar;
     [SerializeField] private GameObject deathParticles;
@@ -31,7 +32,8 @@ public class EnemyBoss : MonoBehaviour, IDamageable
     private enum Attacks
     {
         PARABOLIC_BURST,
-        TELEPORT
+        TELEPORT,
+        RANDOM_ATTACK
     }
 
     // Start is called before the first frame update
@@ -97,6 +99,9 @@ public class EnemyBoss : MonoBehaviour, IDamageable
             case Attacks.TELEPORT:
                 TeleportAttack();
                 break;
+            case Attacks.RANDOM_ATTACK:
+                RandomAttack();
+                break;
         }
     }
 
@@ -105,15 +110,42 @@ public class EnemyBoss : MonoBehaviour, IDamageable
         int projectilesCount = 5;
         for (int i = 0; i < projectilesCount; i++)
         {
-            float yOffset = (float)(random.NextDouble()*2D-1D); // Slightly offset each projectile
+            float yOffset = (float)(random.NextDouble() * 2D - 1D); // Slightly offset each projectile
             Vector3 target = new Vector3(player.transform.position.x, player.transform.position.y + yOffset, player.transform.position.z);
-            InstantiateParabolicProjectile(target);
+            InstantiateParabolicProjectile(target, burstProjectile);
         }
     }
 
-    private void InstantiateParabolicProjectile(Vector3 target)
+    private void RandomAttack()
     {
-        GameObject projectile = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        int projectilesCount = 10; // Number of projectiles to shoot
+        float yOffsetRange = 1.0f; // Range of offset in y-direction
+        float attackRadius = shootingRange * 2f; // Radius around the enemy to target points
+
+        for (int i = 0; i < projectilesCount; i++)
+        {
+            // Generate random offset in y-direction
+            float yOffset = UnityEngine.Random.Range(-yOffsetRange, yOffsetRange);
+
+            // Generate random direction vector
+            Vector2 randomDirection = UnityEngine.Random.insideUnitCircle.normalized;
+
+            // Calculate random distance within attack radius
+            float randomDistance = UnityEngine.Random.Range(0f, attackRadius);
+
+            // Calculate target position
+            Vector3 target = transform.position + new Vector3(randomDirection.x * randomDistance, yOffset, randomDirection.y * randomDistance);
+
+            // Instantiate parabolic projectile towards the target
+            InstantiateParabolicProjectile(target, bulletPrefab);
+        }
+    }
+
+
+
+    private void InstantiateParabolicProjectile(Vector3 target, GameObject bullet)
+    {
+        GameObject projectile = Instantiate(bullet, transform.position, Quaternion.identity);
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
 
         if (rb != null)
@@ -144,7 +176,7 @@ public class EnemyBoss : MonoBehaviour, IDamageable
 
         // Calculate new position for teleportation
         Vector3 newPosition = new Vector3(
-            Mathf.Clamp(originalPosition.x + random.Next(minTeleportPosition, maxTeleportPosition + 1), minTeleportPosition, maxTeleportPosition),
+            Mathf.Clamp(player.transform.position.x - (player.GetComponent<PlayerController>().m_FacingRight? 3f: -3f), minTeleportPosition, maxTeleportPosition),
             originalPosition.y,
             originalPosition.z);
 

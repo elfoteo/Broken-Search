@@ -759,6 +759,7 @@ MonoBehaviour:
   m_GroundCheck: {fileID: 27859370}
   m_CeilingCheck: {fileID: 519008749}
   m_CrouchDisableCollider: {fileID: 0}
+  m_FacingRight: 1
   OnLandEvent:
     m_PersistentCalls:
       m_Calls:
@@ -819,6 +820,7 @@ MonoBehaviour:
   animator: {fileID: 425736580}
   controller: {fileID: 425736574}
   runSpeed: 60
+  player: {fileID: 425736578}
 --- !u!114 &425736578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -837,6 +839,7 @@ MonoBehaviour:
   healthbar: {fileID: 1199377584}
   juiceBar: {fileID: 1199888584}
   gameManager: {fileID: 734553982}
+  isDead: 0
 --- !u!114 &425736579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1490,6 +1493,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameOverUi: {fileID: 120932071}
+  player: {fileID: 0}
   rb: {fileID: 425736576}
 --- !u!4 &734553983
 Transform:
@@ -3913,13 +3917,33 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 425736571}
+    - target: {fileID: 1704031945867367970, guid: afce369209561e143a96ec0880fd95de, type: 3}
+      propertyPath: maxHealth
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 1704031945867367970, guid: afce369209561e143a96ec0880fd95de, type: 3}
+      propertyPath: burstProjectile
+      value: 
+      objectReference: {fileID: 6096232906326038199, guid: adeffec4035a123458c4e2f2c48142f4, type: 3}
+    - target: {fileID: 4852342667788022236, guid: afce369209561e143a96ec0880fd95de, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 13.996323
+      objectReference: {fileID: 0}
+    - target: {fileID: 4852342667788022236, guid: afce369209561e143a96ec0880fd95de, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 34.94634
+      objectReference: {fileID: 0}
+    - target: {fileID: 4852342667788022236, guid: afce369209561e143a96ec0880fd95de, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5645871
+      objectReference: {fileID: 0}
     - target: {fileID: 4852342667788022236, guid: afce369209561e143a96ec0880fd95de, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -21.945889
+      value: -21.91
       objectReference: {fileID: 0}
     - target: {fileID: 4852342667788022236, guid: afce369209561e143a96ec0880fd95de, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.97
+      value: 1.02
       objectReference: {fileID: 0}
     - target: {fileID: 4852342667788022236, guid: afce369209561e143a96ec0880fd95de, type: 3}
       propertyPath: m_LocalPosition.z

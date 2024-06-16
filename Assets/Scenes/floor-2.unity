@@ -442,6 +442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameOverUi: {fileID: 362930032}
+  player: {fileID: 0}
   rb: {fileID: 425736576}
 --- !u!4 &176669132
 Transform:
@@ -1440,6 +1441,7 @@ MonoBehaviour:
   animator: {fileID: 425736580}
   controller: {fileID: 425736574}
   runSpeed: 60
+  player: {fileID: 425736578}
 --- !u!114 &425736578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1458,6 +1460,7 @@ MonoBehaviour:
   healthbar: {fileID: 1716806414}
   juiceBar: {fileID: 1352940238}
   gameManager: {fileID: 176669131}
+  isDead: 0
 --- !u!114 &425736579
 MonoBehaviour:
   m_ObjectHideFlags: 0
