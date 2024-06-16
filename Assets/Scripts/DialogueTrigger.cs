@@ -8,6 +8,7 @@ public class DialogueTrigger : MonoBehaviour {
 	public Dialogue dialogue;
 	private bool dialogStarted;
     private bool dialogueClosed = true;
+    public AudioSource? audioSource;
 
     public void TriggerDialogue ()
 	{
@@ -17,6 +18,7 @@ public class DialogueTrigger : MonoBehaviour {
             FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
             dialogStarted = true;
             dialogueClosed = false;
+            audioSource.Play();
         }
     }
 
@@ -42,6 +44,7 @@ public class DialogueTrigger : MonoBehaviour {
             dialogueClosed = true;
             dialogStarted = false;
             FindObjectOfType<DialogueManager>().EndDialogue();
+            audioSource.Stop();
         }
     }
 }
