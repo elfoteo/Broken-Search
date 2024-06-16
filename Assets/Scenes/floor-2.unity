@@ -443,7 +443,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameOverUi: {fileID: 362930032}
   player: {fileID: 0}
-  rb: {fileID: 425736576}
 --- !u!4 &176669132
 Transform:
   m_ObjectHideFlags: 0
@@ -1461,6 +1460,7 @@ MonoBehaviour:
   juiceBar: {fileID: 1352940238}
   gameManager: {fileID: 176669131}
   isDead: 0
+  uiUpgrade: {fileID: 0}
 --- !u!114 &425736579
 MonoBehaviour:
   m_ObjectHideFlags: 0

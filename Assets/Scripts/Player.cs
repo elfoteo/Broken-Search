@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
     public Image juiceBar;
     public gameManagerScript gameManager;
     public bool isDead;
+    private float enemyPoisoningTime = 0.0F;
+    public GameObject uiUpgrade;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +49,7 @@ public class Player : MonoBehaviour
         
         if (currentXp >= xpForNextLevel)
         {
+            uiUpgrade.SetActive(true);
             currentXp -= xpForNextLevel;
             currentLevel++;
             xpForNextLevel = GetXpForLevel(currentLevel);
@@ -58,8 +61,13 @@ public class Player : MonoBehaviour
             return;
         }
 
-        // Calculate the distance between the player and the NPC
-        if (NPC != null)
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            currentXp++;
+        }
+
+            // Calculate the distance between the player and the NPC
+            if (NPC != null)
         {
             float distance = Vector3.Distance(NPC.transform.position, transform.position);
             DialogueTrigger trigger = NPC.GetComponent<DialogueTrigger>();
@@ -111,6 +119,11 @@ public class Player : MonoBehaviour
     internal void AddJuice(int v)
     {
         currentXp += v;
+    }
+
+    internal void AddEnemyPoisoning(float v)
+    {
+        this.enemyPoisoningTime += v;
     }
 
     internal void IncreaseHitSpeed(int v)

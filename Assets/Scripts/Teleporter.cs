@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement; // Required for scene management
 
+
 public class Teleporter : MonoBehaviour
+
 {
     [SerializeField] private string sceneToLoad; // Field for the scene name
     [SerializeField] private GameObject player; // Reference to the player GameObject
@@ -28,6 +30,7 @@ public class Teleporter : MonoBehaviour
         {
             // Transition to the specified scene
             SceneManager.LoadScene(sceneToLoad);
+            player.GetComponent<Player>().isDead = false;
         }
     }
 }

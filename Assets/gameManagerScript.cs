@@ -7,7 +7,6 @@ public class gameManagerScript : MonoBehaviour
 {
     public GameObject GameOverUi;
     public Player player;
-    [SerializeField] public Rigidbody2D rb;
 
 
     // Start is called before the first frame update
@@ -25,14 +24,13 @@ public class gameManagerScript : MonoBehaviour
     public void gameOver() 
     {
         GameOverUi.SetActive(true);
-        rb.velocity = Vector3.zero;
     }
 
     public void restart() 
     {
         SceneManager.LoadScene("floor-0");
-        player.isDead = false;
-        
+        player.GetComponent<Player>().isDead = false;
+
     }
     public void mainMenu()
     {
