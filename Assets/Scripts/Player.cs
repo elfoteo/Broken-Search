@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public float interactDistanceThreshold = 3.0f;
     public GameObject NPC;
     public Image healthbar;
+    public Image juiceBar;
     public gameManagerScript gameManager;
     private bool isDead;
 
@@ -50,6 +51,13 @@ public class Player : MonoBehaviour
             currentLevel++;
             xpForNextLevel = GetXpForLevel(currentLevel);
         }
+
+        juiceBar.fillAmount = Mathf.Clamp(xpForNextLevel,0,1);
+        if (juiceBar == null)
+        {
+            return;
+        }
+
         // Calculate the distance between the player and the NPC
         if (NPC != null)
         {
