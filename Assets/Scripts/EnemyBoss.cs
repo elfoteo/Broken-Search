@@ -28,6 +28,7 @@ public class EnemyBoss : MonoBehaviour, IDamageable
     private static System.Random random = new System.Random();
     private float lastShootTime = 0f; // Last time the enemy shot
     private Vector3 originalPosition;
+    private Attacks lastAttack;
 
     private enum Attacks
     {
@@ -41,6 +42,7 @@ public class EnemyBoss : MonoBehaviour, IDamageable
     {
         health = maxHealth;
         originalPosition = transform.position;
+        lastAttack = Attacks.RANDOM_ATTACK; // Initialize with an attack other than TELEPORT
     }
 
     // Update is called once per frame
@@ -58,7 +60,14 @@ public class EnemyBoss : MonoBehaviour, IDamageable
         if (Time.time * 1000f - lastShootTime >= shootCooldown && IsPlayerInRange())
         {
             Attacks[] values = (Attacks[])Enum.GetValues(typeof(Attacks));
-            Attacks chosenAttack = values[random.Next(values.Length)];
+
+            // Ensure the next attack is not TELEPORT if the last one was TELEPORT
+            Attacks chosenAttack;
+            do
+            {
+                chosenAttack = values[random.Next(values.Length)];
+            } while (chosenAttack == Attacks.TELEPORT && lastAttack == Attacks.TELEPORT);
+
             ExecuteAttack(chosenAttack);
             lastShootTime = Time.time * 1000f; // Reset the last shoot time
             shootCooldown = null;
@@ -91,6 +100,8 @@ public class EnemyBoss : MonoBehaviour, IDamageable
 
     private void ExecuteAttack(Attacks chosenAttack)
     {
+        lastAttack = chosenAttack; // Update the last attack
+
         switch (chosenAttack)
         {
             case Attacks.PARABOLIC_BURST:
@@ -141,8 +152,6 @@ public class EnemyBoss : MonoBehaviour, IDamageable
         }
     }
 
-
-
     private void InstantiateParabolicProjectile(Vector3 target, GameObject bullet)
     {
         GameObject projectile = Instantiate(bullet, transform.position, Quaternion.identity);
@@ -176,7 +185,7 @@ public class EnemyBoss : MonoBehaviour, IDamageable
 
         // Calculate new position for teleportation
         Vector3 newPosition = new Vector3(
-            Mathf.Clamp(player.transform.position.x - (player.GetComponent<PlayerController>().m_FacingRight? 3f: -3f), minTeleportPosition, maxTeleportPosition),
+            Mathf.Clamp(player.transform.position.x - (player.GetComponent<PlayerController>().m_FacingRight ? 3f : -3f), minTeleportPosition, maxTeleportPosition),
             originalPosition.y,
             originalPosition.z);
 

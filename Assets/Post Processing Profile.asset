@@ -15,7 +15,7 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.7
+    m_Value: 0.85
 --- !u!114 &-330228996988590177
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -40,7 +40,7 @@ MonoBehaviour:
     m_Value: 0.5
   scatter:
     m_OverrideState: 1
-    m_Value: 0.8
+    m_Value: 0.9
   clamp:
     m_OverrideState: 1
     m_Value: 65472
@@ -79,6 +79,7 @@ MonoBehaviour:
   - {fileID: -5404762301032331901}
   - {fileID: -330228996988590177}
   - {fileID: 3990190822399594182}
+  - {fileID: 6632440185220768250}
 --- !u!114 &3990190822399594182
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -97,10 +98,38 @@ MonoBehaviour:
     m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.7
+    m_Value: 1
   response:
     m_OverrideState: 1
     m_Value: 1
   texture:
     m_OverrideState: 1
     m_Value: {fileID: 0}
+--- !u!114 &6632440185220768250
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 899c54efeace73346a0a16faa3afe726, type: 3}
+  m_Name: Vignette
+  m_EditorClassIdentifier: 
+  active: 1
+  color:
+    m_OverrideState: 1
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
+  center:
+    m_OverrideState: 1
+    m_Value: {x: 0.5, y: 0.5}
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0.4
+  smoothness:
+    m_OverrideState: 1
+    m_Value: 0.2
+  rounded:
+    m_OverrideState: 1
+    m_Value: 0
